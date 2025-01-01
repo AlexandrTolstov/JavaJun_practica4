@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  lesson4:
+    image: ${DOCKER_REGISTRY-}lesson4
+    container_name: courses.app
+    build:
+      context: .
+      dockerfile: Dockerfile
+  school-db:
+    image: mysql:latest
+    container_name: schoolDB.db
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=schoolDB
+    volumes:
+      - ./.containers/database:/var/lib/mysql
